@@ -1,0 +1,21 @@
+
+body {
+    min-width: 300px;
+    min-height: 300px;
+}
+
+#start-scraping-btn {
+    height: 30px;
+    outline: none;
+    border: none;
+    background-color: orange;
+    border: 2px solid #000000;
+    border-radius: 3px;
+}
+#start-scraping-btn.ready {
+    cursor: pointer;
+}
+#start-scraping-btn.scraping {
+    cursor: none;
+
+}

@@ -1,0 +1,14 @@
+{
+    "name": "Amazon Study",
+    "description": "A scraping tool to collect a large dataset of online purchase histories from research study participants.",
+    "version": "1.0",
+    "manifest_version": 3,
+    "permissions": ["declarativeContent", "scripting", "activeTab", "tabs", "downloads"],//, "*://*/*"],
+	"background": {
+    	"service_worker": "background.js"
+    },
+    "action": {
+    	"default_popup": "popup.html",
+        "default_icon": "favicon.ico"
+    }
+  }
