@@ -3,12 +3,39 @@
     "description": "A scraping tool to collect a large dataset of online purchase histories from research study participants.",
     "version": "1.0",
     "manifest_version": 3,
-    "permissions": ["declarativeContent", "scripting", "activeTab", "tabs", "downloads"],//, "*://*/*"],
-	"background": {
-    	"service_worker": "background.js"
+    // TODO? use "host_permissions": ["https://www.amazon.com/*"], ?
+    // https://developer.chrome.com/docs/extensions/reference/permissions/
+    // TODO? remove downloads from permissions?
+    // also the declarativeContent might not be needed. copied from a manifest v2 tutorial about something else
+    // "permissions": ["declarativeContent", "scripting", "activeTab", "tabs", "downloads"],//, "*://*/*"],
+    "permissions": [
+        // scripting needed for manifest v3 if I want to interact with page content (via a script) right??
+        // TODO: maybe I can actually do this with content_scripts instead and then wouldn't need special permissions
+       // content_scripts might be better for my usecase because I'm operating on a well known set of pages
+        "scripting", 
+        "activeTab", 
+        "tabs" // needed to update URLs
+    ],
+    // see https://developer.chrome.com/docs/extensions/mv3/content_scripts/#static-declarative
+    "content_scripts": [
+        {
+            "matches": ["https://www.amazon.com/gp/your-account/order-history*"],
+            //"css": ["content-script-styles.css"],
+            "js": ["content-script.js"]
+        }
+    ],
+    "background": {
+        "service_worker": "background.js"
     },
     "action": {
-    	"default_popup": "popup.html",
-        "default_icon": "favicon.ico"
+        "default_popup": "popup.html",
+        "default_title": "Participate", // What is shown
+        "default_icon": "favicon.ico" // for toolbar
+    },
+    // icons to display in the extensions management page
+    "icons": {
+        "16": "favicon.ico",
+        "48": "favicon.ico",
+        "128": "favicon.ico"
     }
   }

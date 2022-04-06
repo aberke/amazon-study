@@ -1,0 +1,24 @@
+{
+  "name": "Chrome React SEO Extension",
+  "description": "The power of React and TypeScript for building interactive Chrome extensions",
+  "version": "1.0",
+  "manifest_version": 3,
+  "action": {
+      "default_popup": "index.html",
+      "default_title": "Open the popup"
+  },
+  "icons": {
+      "16": "logo192.png",
+      "48": "logo192.png",
+      "128": "logo192.png"
+  },
+  "permissions": [
+    "activeTab" // only need to access the current tab ("activeTab")
+  ],
+  "content_scripts": [
+    {
+        "matches": ["http://*/*", "https://*/*"], // replace with Amazon specific ?
+        "js": ["./static/js/content.js"] // insert content.js script a page if it matches ^
+    }
+ ]
+}

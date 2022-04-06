@@ -4,11 +4,91 @@
     <link rel="stylesheet" href="popup.css">
   </head>
   <body>
-    <h1>Amazon Order History Study</h1>
-    <p>a brief description</p>
-    <button id="start-scraping-btn">start scraping</button>
+    <div id="title-container">
+      <h1>Amazon Order History Study</h1>
+    </div>
+    <div class="description-1">
+      <h1>Here is what we are going to do</h1>
+      <p>
+        We are researchers collecting data for a study... 
+        lorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum
+      </p>
+      <p>Here is what <strong>we will not do:</strong>
+        <ul>
+          <li>We will not collect any payment information</li>
+          <li>We will not collect any personally identifying info (PII) such as your name or address</li>
+          <li>We will not save any data without your full consent! We will show you everything we want to save and ask you for your consent.</li>
+        </ul>
+      </p>
+      <p>If this is okay, here is how this works:
+        <ul>
+          <li>You click the "ready" button below</li>
+          <li>You browser opens a tab with Amazon order histories</li>
+          <li>If you are not logged into Amazon, you are prompted to log in. Please log in.</li>
+          <li>You are asked survey questions in this window</li>
+          <li>Your Amazon orders are scraped in the background.</li> 
+          <!-- say it again  -->
+          <li>We will not collect any personally identifying info (PII) such as your name or address.</li>
+          <li>We show you all of the information collected.</li>
+          <li>We ask for your consent to save it. You can decline.</li>
+          <li>You click to submit or decline.</li>
+        </ul>
+        If you decline, none of your data will be saved! Only Amazon will have it ;-)
+        No matter what you choose, thank you for your time!
+      </p>
+      <div class="buttons-container">
+        <button id="exit-btn">exit</button>
+        <button id="ready-btn">ready</button>
+      </div>
+    </div>
+    <div style="display:none;" id="scraping-progress-container">
+      scraping progress container
+    </div>
+    <div id="survey-container">
+      <h2>Survey questions</h2>
+      <div id="survey-questions-container">
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+        <p>Question TODO: make me a form and give me content</p>
+      </div>
+      <button id="survey-submit-btn">submit</button>
+    </div>
+    <div id="consent-container">
+      <!-- TODO: if the scraping is not complete, handle this -->
+      <div>
+        scraping progress?
+      </div>
+      <h2>Here is the information we would like to upload</h2>
+      <p>The full set of data we would like to upload is below.</p>
+      <div id="data-use-survey-container">
+        <p>TODO: consent survey questions: make me a form and give me content</p>
+      </div>
+      <div id="data-collected-container">
+        <!-- lots of data here. make it scrollable -->
+        <div id="survey-data-collected-container">
+          survey data answers go here
+        </div>
+        <div>
+          <p>
+            scraped order histories data go here.
+            How this is shown differs by experiment arm.
+          </p>
+          
+        </div>
+      </div>
+      <div id="consent-btns">
+        make some buttons
+      </div>
 
-    <h2>TODO: survey questions go here</h2>
+    </div>
+
+    <!-- <button id="start-scraping-btn">start scraping</button> -->
+
   </body>
   <script src="popup.js"></script>
 </html>
