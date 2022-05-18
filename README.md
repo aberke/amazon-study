@@ -2,6 +2,9 @@
 
 https://docs.google.com/document/d/1juwHjItfMks2V_40uQpU6fKXi8nNkym51Gc6AB6LAiE/
 
+## Qualtrics survey
+
+See survey snippets with documentation for set up in /survey-snippets/
 
 
 ## Chrome extension development
