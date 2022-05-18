@@ -111,3 +111,10 @@ table th, table td {
 	list-style: disc;
 	margin-left: 25px; 
 }
+
+.test-choice-container li {
+	padding: 5px;
+	margin: 5px 0;
+	display: block;
+	border: 1px solid gray;
+}
