@@ -161,31 +161,78 @@ function addResponseId(data, responseIdCol, responseId) {
     return data.map(addId);
 }
 
+function validateCsvData(csvData) {
+    // Check there is at least 2 rows of data with expected columns.
+    if (csvData.length < 2) {
+        return {
+            data: csvData,
+            message: 'Missing data. Is this the right file? Or did the file not download properly?'
+        };
+    }
+    // Check there is data dating back to 2018.
+    const orderDateYears = new Set(csvData.map(rowObj => new Date(rowObj['Order Date']).getFullYear()));
+    if (!orderDateYears.has(2018)) {
+        return {
+            data: csvData,
+            message: 'Missing data from 2018.'
+        };
+    }
+    // Check there are multiple years of data.
+    // We ask for 2018 - 2021 data (4 years). Be flexible. Maybe they went a year abroad.
+    if (orderDateYears < 2) {
+        return {
+            data: csvData,
+            message: 'Missing multiple years of data.'
+        };
+    }
+}
+let errorMessageP = document.getElementById('error-message');
+function displayErrorMessage(errMessage) {
+    let displayMessage = "There is a problem with the file: ";
+    displayMessage += errMessage;
+    displayMessage += " Please try the data download process again and choose the new file.";
+    errorMessageP.innerHTML = displayMessage;
+    errorMessageP.style.display = 'block';
+}
+function hideErrorMessage() {
+    errorMessageP.style.display = 'none';
+}
+
 function handleFileInput(e) {
+    // Hide the possibly previously shown error message.
+    hideErrorMessage();
+    // In case the respondent previously inserted a file that passed validation:
+    // Clear out (possibly) previously inserted table.
+    tableContainerElt.innerHTML = "";
+    hideChoices();
+    hideShareDataLanguageContainer();
     Papa.parse(e.target.files[0], {
         header: true,
         complete: function(results) {
-            console.log('TODO: validate file input')
-            // build the csvData
             // data is an array of dicts where each dict maps column to value
             // [{col: val, for col,val in row} for row in csvData]
             // create a reducedData object (array) with the same data structure
             csvData = reduceCsvData(results.data, csvColumns);
-            // add in the participant ID
-            const responseId = getResponseId(csvData);
-            csvData = addResponseId(csvData, responseIdCol, responseId);
-            let columns = [responseIdCol].concat(csvColumns);
-            // build the table to show
-            buildTable(csvData, columns);
-            showChoices();
-            shareDataLanguageContainer.style.display = 'block';
+            const validationError = validateCsvData(csvData);
+            if (!!validationError) {
+                console.log('File validation failed:', validationError);
+                displayErrorMessage(validationError.message);
+            } else {
+                // build the csvData
+                // add in the participant ID
+                const responseId = getResponseId(csvData);
+                csvData = addResponseId(csvData, responseIdCol, responseId);
+                let columns = [responseIdCol].concat(csvColumns);
+                // build the table to show
+                buildTable(csvData, columns);
+                showChoices();
+                showShareDataLanguageContainer();
+            }
         }
     });
 }
 
 function buildTable(csvData, columns) {
-    // clear out (possibly) previously inserted table
-    tableContainerElt.innerHTML = "";
     // build new data
     let totalRows = csvData.length;
     let totalRowsP = document.createElement('p');
@@ -272,7 +319,14 @@ function uploadProcessedCsvData() {
 }
 
 const shareDataLanguageContainer = document.getElementById('share-data-language-container');
-shareDataLanguageContainer.style.display = 'none';
+let showShareDataLanguageContainer = function() {
+    shareDataLanguageContainer.style.display = 'block';
+}
+let hideShareDataLanguageContainer = function() {
+    shareDataLanguageContainer.style.display = 'none';
+}
+hideShareDataLanguageContainer();
+
 
 const tableContainerElt = document.getElementById('purchases-data-table-container');
 const fileInput = document.getElementById('file-input');

@@ -55,9 +55,21 @@ body {
 	font-family: Arial, Helvetica, sans-serif;
 }
 
+/* 
+to try to mimic Qualtrics display in test mode 
+without overriding those Qualtrics styles 
+*/
+.Q-upload-container {
+	max-width: 770px;
+	margin: auto;
+}
+
 #file-input-container {
 	display: flex;
-
+}
+#file-input {
+	float: unset;
+	padding: 10px 0;
 }
 
 .table-container {
