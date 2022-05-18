@@ -133,3 +133,19 @@ Go into Qualtrics survey
 
 Data and Analysis > Export & Import.
 
+
+## Debugging Notes
+
+Previewing vs publishing changes.
+- hacking in Preview mode is tough because content is loaded into an iframe (not done in published mode).
+- can still access Preview mode elements via something like...
+```
+idoc = document.getElementById('preview-view').contentWindow.document;
+fileInput = idoc.getElementById('file-input');
+```
+- Simpler dev process for handling code debugging: Using a scratch survey and testing changes in that survey and publishing them.
+
+Qualtrics Questions API Interface does not support many tokens:
+- `*` for multiplication
+- backticks for strings
+- `async`
