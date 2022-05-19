@@ -101,6 +101,10 @@ function getDataVersion() {
 let dataVersion = getDataVersion();
 console.log('using data version:', dataVersion);
 
+// default is true
+const showData = getUrlParams()['showdata']==='false' ? false : true;
+console.log('show data:', showData);
+
 // Data columns to use:
 // version A: partial data
 let csvColumnsVersionA = [
@@ -202,10 +206,10 @@ function handleFileInput(e) {
     // Hide the possibly previously shown error message.
     hideErrorMessage();
     // In case the respondent previously inserted a file that passed validation:
-    // Clear out (possibly) previously inserted table.
-    tableContainerElt.innerHTML = "";
+    // Clear out (possibly) previously inserted data.
+    dataContainerElt.innerHTML = "";
     hideChoices();
-    hideShareDataLanguageContainer();
+    hideShareDataLanguage();
     Papa.parse(e.target.files[0], {
         header: true,
         complete: function(results) {
@@ -223,13 +227,27 @@ function handleFileInput(e) {
                 const responseId = getResponseId(csvData);
                 csvData = addResponseId(csvData, responseIdCol, responseId);
                 let columns = [responseIdCol].concat(csvColumns);
-                // build the table to show
-                buildTable(csvData, columns);
+                if (showData) {
+                    // build the table to show
+                    buildTable(csvData, columns);
+                } else {
+                    buildDataDescription(csvData, columns);
+                }
                 showChoices();
-                showShareDataLanguageContainer();
+                showShareDataLanguage();
             }
         }
     });
+}
+
+function buildDataDescription(_csvData, columns) {
+    let ul = document.createElement('ul');
+    columns.forEach(function(c) {
+        let li = document.createElement('li');
+        li.appendChild(document.createTextNode(c));
+        ul.appendChild(li);
+    });
+    dataContainerElt.appendChild(ul);
 }
 
 function buildTable(csvData, columns) {
@@ -237,7 +255,7 @@ function buildTable(csvData, columns) {
     let totalRows = csvData.length;
     let totalRowsP = document.createElement('p');
     totalRowsP.appendChild(document.createTextNode(totalRows.toString() + ' rows (scroll)'));
-    tableContainerElt.appendChild(totalRowsP);
+    dataContainerElt.appendChild(totalRowsP);
 
     let tableElt = document.createElement('table');
     var tableBodyElt = document.createElement('tbody');
@@ -261,7 +279,7 @@ function buildTable(csvData, columns) {
         tableBodyElt.appendChild(rowElt)
     });
     tableElt.appendChild(tableBodyElt);
-    tableContainerElt.appendChild(tableElt);
+    dataContainerElt.appendChild(tableElt);
 }
 
 // qualtrics JS parser doesn't allow async 
@@ -318,17 +336,20 @@ function uploadProcessedCsvData() {
     });
 }
 
-const shareDataLanguageContainer = document.getElementById('share-data-language-container');
-let showShareDataLanguageContainer = function() {
-    shareDataLanguageContainer.style.display = 'block';
+const shareDataLanguageContainerSelector = '.share-data-language-container';
+let showShareDataLanguage = function() {
+    document.querySelectorAll(shareDataLanguageContainerSelector).forEach(function(el) {
+        el.style.display = 'block';
+     });
 }
-let hideShareDataLanguageContainer = function() {
-    shareDataLanguageContainer.style.display = 'none';
+let hideShareDataLanguage = function() {
+    document.querySelectorAll(shareDataLanguageContainerSelector).forEach(function(el) {
+        el.style.display = 'none';
+     });
 }
-hideShareDataLanguageContainer();
+hideShareDataLanguage();
 
-
-const tableContainerElt = document.getElementById('purchases-data-table-container');
+const dataContainerElt = document.getElementById('purchases-data-container');
 const fileInput = document.getElementById('file-input');
 fileInput.addEventListener('change', handleFileInput);
 

@@ -97,9 +97,24 @@ table th, table td {
 	line-height: initial;
 }
 
-#share-data-language-container {
+.share-data-language-container {
 	margin-top: 25px;
 }
-#share-data-language-container p {
+.share-data-language-container p {
 	padding: 10px 0;
+}
+
+#purchases-data-container ul li {
+	font-size: 14px;
+	font-weight: bold;
+	/* in order to show the disc */
+	list-style: disc;
+	margin-left: 25px; 
+}
+
+.test-choice-container li {
+	padding: 5px;
+	margin: 5px 0;
+	display: block;
+	border: 1px solid gray;
 }

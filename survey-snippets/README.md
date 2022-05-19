@@ -121,8 +121,23 @@ Why:
 - JS: It must be done this way to make the advertised Qualtrics.SurveyEngine APIs work properly. Why not put our JS into external scripts like the libraries? Too many hours went into trying to make this work otherwise via external scripts. The API interface does not seem to properly work outside of the JS editing interface Qualtrics provides.
 
 
-#### Data upload question versions
+### Data upload question versions
 
+Different question versions (with different language) are in separate `Q-upload-[name].html` files for ease of use, iteration, testing.
+
+For updating the Qualtrics survey, can directly copy+paste from the versioned HTML into the qualtrics question (using the HTML editor) for that version.
+
+Can also view as standalone files.
+
+e.g.
+https://aberke.github.io/amazon-study/survey-snippets/upload-questions/Q-upload-control.html
+
+
+Can toggle between different experimental ways for data to be shown via URL parameters.
+
+- `?data=A` : limited table columns
+- `?data=B` : more table columns
+- `?showdata=false` : name the table columns without showing the table
 
 
 
