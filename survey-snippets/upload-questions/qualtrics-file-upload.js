@@ -47,6 +47,17 @@ try {
 }
 console.log(qualtricsDeclared ? 'Qualtrics' : 'Test without Qualtrics');
 
+function getUrlParams(url) {
+    if(!url) url = location.search;
+    let query = url.substr(1);
+    let result = {};
+    query.split("&").forEach(function(part) {
+        let item = part.split("=");
+        result[item[0]] = decodeURIComponent(item[1]);
+    });
+    return result;
+}
+
 // Note: Qualtrics makes the embedded data available via the 
 // Qualtrics.SurveyEngine.getEmbeddedData
 // EXCEPT for ResponseID. Must get this via the piped text feature.
@@ -73,17 +84,33 @@ const BASE_URL = 'https://' + DATACENTERID + '.qualtrics.com/API';
 console.log('using responseId:', responseId, 'surveyId:', surveyId, 
             'FQID:', FQID, 'BASE_URL:', BASE_URL);
 
-
-function getUrlParams(url) {
-    if(!url) url = location.search;
-    let query = url.substr(1);
-    let result = {};
-    query.split("&").forEach(function(part) {
-        let item = part.split("=");
-        result[item[0]] = decodeURIComponent(item[1]);
-    });
-    return result;
+function getEmbeddedShowData() {
+    // Returns Boolean or undefined
+    if (!!qualtricsDeclared) {
+        let embeddedShowData = Qualtrics.SurveyEngine.getEmbeddedData('showdata');
+        if (embeddedShowData === 'true' || embeddedShowData === true) {
+            return true;
+        } else if (embeddedShowData === 'false' || embeddedShowData === false) {
+            return false;
+        }
+    }
 }
+// For the following, the embedded data value can be overridden
+// by URL parameters.
+let showDataDefault = true; // default
+function getShowData() {
+    let showData = getEmbeddedShowData();
+    // URL parameter (can override embedded data)
+    let urlParamShowData = getUrlParams()['showdata'];
+    if (urlParamShowData==='false') {
+        showData = false;
+    } else if (urlParamShowData==='true') {
+        showData = true;
+    }
+    return (showData===undefined) ? showDataDefault : showData;
+}
+const showData = getShowData();
+console.log('showdata=', showData);
 
 
 /*
@@ -101,9 +128,6 @@ function getDataVersion() {
 let dataVersion = getDataVersion();
 console.log('using data version:', dataVersion);
 
-// default is true
-const showData = getUrlParams()['showdata']==='false' ? false : true;
-console.log('show data:', showData);
 
 // Data columns to use:
 // version A: partial data
