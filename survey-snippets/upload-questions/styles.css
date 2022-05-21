@@ -95,6 +95,7 @@ table th, table td {
 	/* text-align: left; */
 	padding: 5px;
 	line-height: initial;
+	min-width: 85px;
 }
 
 .share-data-language-container {

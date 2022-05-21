@@ -148,6 +148,11 @@ let csvColumns = (dataVersion === 'A' ? csvColumnsVersionA : csvColumnsVersionB)
 const responseIdCol = 'Survey ResponseID';
 const currencyCol = 'Currency';
 
+// Rename some CSV column names to improve clarity5
+const csvColumnNameMap = {
+    'ASIN/ISBN': 'ASIN/ISBN (Product Code)',
+};
+
 
 function filterRow(row) {
     // Returns whether row passes the filter test.
@@ -226,6 +231,15 @@ function hideErrorMessage() {
     errorMessageP.style.display = 'none';
 }
 
+function mapCsvDataColumnNames(data, nameMap) {
+    function mapNames(rowObj) {
+        let newRowObj = {};
+        Object.keys(rowObj).map((c) => newRowObj[(nameMap[c]||c)] = rowObj[c]);
+        return newRowObj;
+    }
+    return data.map(mapNames);
+}
+
 function handleFileInput(e) {
     // Hide the possibly previously shown error message.
     hideErrorMessage();
@@ -251,6 +265,9 @@ function handleFileInput(e) {
                 const responseId = getResponseId(csvData);
                 csvData = addResponseId(csvData, responseIdCol, responseId);
                 let columns = [responseIdCol].concat(csvColumns);
+                // Update any column names
+                columns = columns.map( c => csvColumnNameMap[c] || c );
+                csvData = mapCsvDataColumnNames(csvData, csvColumnNameMap);
                 if (showData) {
                     // build the table to show
                     buildTable(csvData, columns);
