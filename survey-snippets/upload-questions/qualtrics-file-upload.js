@@ -135,7 +135,7 @@ let csvColumnsVersionA = [
     'Order Date',
     'Purchase Price Per Unit',
     'Quantity',
-    'Shipping Address Zip', // Address info unavailable for items shipped to Amazon Lockers
+    'Shipping Address State', // Address info unavailable for items shipped to Amazon Lockers
 ];
 // version B: granular data
 let csvColumnsVersionB = csvColumnsVersionA.concat([
@@ -157,8 +157,7 @@ const csvColumnNameMap = {
 function filterRow(row) {
     // Returns whether row passes the filter test.
     // filter out non-US orders and returned orders (quantity 0)
-    // TODO: also use 'Shipping Address Zip' (or another col)
-    //       to skip non US orders
+    // TODO?: also use 'Shipping Address __' to skip non US orders ?
     if (row[currencyCol] !== 'USD') {
         console.log('filtering row with non-US currency:', row[currencyCol])
         return false;
