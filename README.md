@@ -1,4 +1,9 @@
-# amazon-study
+# Amazon data and consumer privacy study
+
+MIT IRB protocol # 2205000649
+
+
+Our documentation:
 
 https://docs.google.com/document/d/1juwHjItfMks2V_40uQpU6fKXi8nNkym51Gc6AB6LAiE/
 
