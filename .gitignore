@@ -1,2 +1,12 @@
-data/*.csv
+
+# Standard things
+.ipynb_checkpoints
+
+*.DS_Store
+
+venv*
+
+# Project specific
+data/*raw.csv
+
 survey-snippets/.env
