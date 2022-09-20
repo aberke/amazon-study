@@ -68,6 +68,6 @@ SurveyID,SurveyID,False
 ResponseID,ResponseID,False
 FQID,FQID,False
 API_TOKEN,API_TOKEN,False
+RandomID,RandomID,True
 showdata,showdata,True
 incentive,incentive,True
-RandomID,RandomID,True
