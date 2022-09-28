@@ -98,6 +98,11 @@ table th, table td {
 	min-width: 85px;
 }
 
+#error-message {
+	padding: 10px;
+	border: 1px solid red;
+}
+
 .share-data-language-container {
 	margin-top: 25px;
 }
