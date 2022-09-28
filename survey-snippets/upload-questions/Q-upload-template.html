@@ -7,8 +7,9 @@
         <p>
             Click to insert the file from Amazon below.
         </p>
+        <br/>
         <p>
-            (We will ask for your full consent before saving any data.)
+            We will ask for your full consent before saving any data. 
         </p>
         <br/>
         <div id="file-input-container">
@@ -18,29 +19,24 @@
     <div id="error-message-container">
         <p style="display:none;" id="error-message"></p>
     </div>
+    <!-- shown for specific versions  -->
+    <div class="share-data-language-container">
+        <div id="incentive-language-template">
+            <p>
+                [additional incentive language specific to experiment arm]
+            </p>
+        </div>
+    </div>
     <div class="share-data-language-container">
         <!-- shown for all language versions -->
         <p class="incentive-language-all">
-            Below is the data we would like to collect and save. No other information from your Amazon account will be collected.
-            A random survey responseID would be connected to your data. It is not connected to your Amazon account.  
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
         </p>
     </div>
     <div id="purchases-data-container" class="table-container"></div>
-    <div class="share-data-language-container">
-        <!-- shown for any of the language/ incentive versions -->
-        <div class="incentive-language-all">
-            <p>
-            This data will only be saved with your consent. Any saved data may be publicly shared.
-            </p>
-        </div>
-        <!-- shown for specific versions  -->
-        <div id="incentive-language-template">
-            <p>
-                VERSION SPECIFIC LANGUAGE
-            </p>
-        </div>
-    </div>
-    <div class="test-choice-container" style="display:none;">
+    <br/>
+    <div class="test-choice-container" style="display: none;">
         <ul>
             <li>Consent to share</li>
             <li>Decline</li>

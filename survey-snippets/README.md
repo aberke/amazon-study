@@ -118,7 +118,8 @@ Qualtrics.SurveyEngine.addOnload(function() {
 ```
 
 Why:
-- JS: It must be done this way to make the advertised Qualtrics.SurveyEngine APIs work properly. Why not put our JS into external scripts like the libraries? Too many hours went into trying to make this work otherwise via external scripts. The API interface does not seem to properly work outside of the JS editing interface Qualtrics provides.
+- JS: It must be done this way to make the advertised Qualtrics.SurveyEngine APIs work properly. Why not put our JS into external scripts like the libraries? 
+Many hours went into trying to make this work otherwise via external scripts. The API interface does not seem to properly work outside of the JS editing interface Qualtrics provides.
 
 
 ### Data upload question versions

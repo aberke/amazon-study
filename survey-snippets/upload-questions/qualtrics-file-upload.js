@@ -5,7 +5,7 @@ The following Javascript assumes that the questions in qualtrics
 have been set up as described in the README.
 namely:
 - set needed embedded data
-- recode question choie values
+- recode question choice values
 
 The javascript must be inserted into the Qualtrics Questions JS
 interface for each question it is to be called.
@@ -25,7 +25,6 @@ Retrieve embedded data:
 show file input and attach listeners
 
 (If in qualtrics)
-- hide the questions
 - disable 'next'
 - add listeners for qualtrics events
 
@@ -36,12 +35,18 @@ Upon file input
 Upon file share (if in qualtrics and if consent):
 - POST new survey response via Qualtrics API with just the file as the content.
 
+Note the additional quirks: 
+- sometimes the Qualtrics API prefers being called
+via this. Sometimes via Qualtrics.SurveyEngine
+
 */
 
-let qualtricsDeclared; 
+let qualtricsDeclared;
+let surveyEngine;
 try {
     Qualtrics;
     qualtricsDeclared = true;
+    surveyEngine = this;
 } catch(e) {
     qualtricsDeclared = false;
 }
@@ -148,10 +153,12 @@ let csvColumns = (dataVersion === 'A' ? csvColumnsVersionA : csvColumnsVersionB)
 const responseIdCol = 'Survey ResponseID';
 const currencyCol = 'Currency';
 
-// Rename some CSV column names to improve clarity5
+// Rename some CSV column names to improve clarity
 const csvColumnNameMap = {
     'ASIN/ISBN': 'ASIN/ISBN (Product Code)',
 };
+
+let displayColumns = [responseIdCol].concat(csvColumns).map( c => csvColumnNameMap[c] || c );
 
 
 function filterRow(row) {
@@ -198,7 +205,7 @@ function validateCsvData(csvData) {
     if (csvData.length < 2) {
         return {
             data: csvData,
-            message: 'Missing data. Is this the right file? Or did the file not download properly?'
+            message: 'Missing data. Is this the right file?'
         };
     }
     // Check there is data dating back to 2018.
@@ -222,7 +229,8 @@ let errorMessageP = document.getElementById('error-message');
 function displayErrorMessage(errMessage) {
     let displayMessage = "There is a problem with the file: ";
     displayMessage += errMessage;
-    displayMessage += " Please try the data download process again and choose the new file.";
+    displayMessage += "\nPlease try the data download process again and choose the new file.";
+    displayMessage += "\nYou can click back to the previous page to report an issue.";
     errorMessageP.innerHTML = displayMessage;
     errorMessageP.style.display = 'block';
 }
@@ -242,11 +250,9 @@ function mapCsvDataColumnNames(data, nameMap) {
 function handleFileInput(e) {
     // Hide the possibly previously shown error message.
     hideErrorMessage();
-    // In case the respondent previously inserted a file that passed validation:
-    // Clear out (possibly) previously inserted data.
-    dataContainerElt.innerHTML = "";
-    hideChoices();
-    hideShareDataLanguage();
+    // clear out possibly previous set data
+    validFile = false;
+    disableNext();
     Papa.parse(e.target.files[0], {
         header: true,
         complete: function(results) {
@@ -263,26 +269,27 @@ function handleFileInput(e) {
                 // add in the participant ID
                 const responseId = getResponseId(csvData);
                 csvData = addResponseId(csvData, responseIdCol, responseId);
-                let columns = [responseIdCol].concat(csvColumns);
                 // Update any column names
-                columns = columns.map( c => csvColumnNameMap[c] || c );
                 csvData = mapCsvDataColumnNames(csvData, csvColumnNameMap);
                 if (showData) {
+                    // In case the respondent previously inserted a file that passed validation:
+                    // Clear out (possibly) previously inserted data.
+                    dataContainerElt.innerHTML = "";
                     // build the table to show
-                    buildTable(csvData, columns);
-                } else {
-                    buildDataDescription(csvData, columns);
+                    buildTable(csvData, displayColumns);
                 }
                 showChoices();
                 showShareDataLanguage();
+                validFile = true;
+                checkEnableNext();
             }
         }
     });
 }
 
-function buildDataDescription(_csvData, columns) {
+function buildDataDescription() {
     let ul = document.createElement('ul');
-    columns.forEach(function(c) {
+    displayColumns.forEach(function(c) {
         let li = document.createElement('li');
         li.appendChild(document.createTextNode(c));
         ul.appendChild(li);
@@ -387,9 +394,10 @@ let hideShareDataLanguage = function() {
         el.style.display = 'none';
      });
 }
-hideShareDataLanguage();
 
 const dataContainerElt = document.getElementById('purchases-data-container');
+buildDataDescription();
+
 const fileInput = document.getElementById('file-input');
 fileInput.addEventListener('change', handleFileInput);
 
@@ -405,20 +413,33 @@ let hideChoices = function() {
         el.style.display = 'none';
      });
 }
+showChoices();
+
+// Flow logic
+let validFile = false;
+let choiceSelected = false;
+
+let disableNext = function() {
+    if (!qualtricsDeclared) {
+        return console.log('disableNext');
+    }
+    surveyEngine.disableNextButton();
+}
+let enableNext = function() {
+    if (!qualtricsDeclared) {
+        return console.log('enableNext');
+    }
+    surveyEngine.enableNextButton();
+}
+disableNext();
+
+function checkEnableNext() {
+    if (!!validFile & !!choiceSelected) {
+        enableNext();
+    }
+}
 
 if (qualtricsDeclared) {
-    let surveyEngine = this;
-    console.log('surveyEngine:', surveyEngine);
-    
-    function disableNext() {
-        surveyEngine.disableNextButton();
-    }
-    function enableNext() {
-        surveyEngine.enableNextButton();
-    }
-    hideChoices();
-    disableNext();
-
     let uploadConsent = false;
     surveyEngine.questionclick = function(event, element){
         console.log('surveyEngine.questionclick', event, element)
@@ -433,8 +454,9 @@ if (qualtricsDeclared) {
             } else {
                 uploadConsent = false;
             }
+            choiceSelected = true;
             console.log('set upload consent to ', uploadConsent);
-            enableNext();
+            checkEnableNext();
         }
     }
 
