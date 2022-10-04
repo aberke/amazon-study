@@ -15,10 +15,10 @@ Options:
   --version                 Show version.
   --config FILE             Path to JSON config file with keys for 'token', 'data_center', 'directory_id', and 'survey_id'. [default: ./config.json]
   -o FILE                   Filepath to save data to.
-  --start-date DATE         Only get responses after this start date
-  --end-date DATE           Only get responses before this end date
+  --start-date DATE         (not implemented) Only get responses after this start date
+  --end-date DATE           (not implemented) Only get responses before this end date
   --keep-upload-rows        Keep upload file rows (Q43)
-  --status STATUS           Only show mturk assignments that are STATUS ('Submitted', 'Approved', or 'Rejected'). [default: Submitted]
+  --status STATUS           (not implemented) Only show mturk assignments that are STATUS ('Submitted', 'Approved', or 'Rejected'). [default: Submitted]
   --dry-run                 Dry run payment. Returns amounts for review.
   --autopay                 Actually pay / approve assignments
 
