@@ -7,6 +7,8 @@
 venv*
 
 # Project specific
+config.json
+
 data/*raw.csv
 
 survey-snippets/.env
