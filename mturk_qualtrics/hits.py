@@ -2,11 +2,10 @@ import numpy as np
 import pandas as pd
 import datetime
 import boto3
-from . import config
 
 
 class HITUtils:
-    def __init__(self, config=config.AWS):
+    def __init__(self, config):
         self.client = boto3.client(
             "mturk",
             region_name=config["region_name"],
