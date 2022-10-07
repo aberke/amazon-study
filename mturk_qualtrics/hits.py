@@ -15,7 +15,7 @@ class HITUtils:
         self.client_initialized = True
 
     # payment
-    def pay_workers(self, assignment_data, dry_run=True):
+    def approve_assignments(self, assignment_data, exclude_bonus=False, dry_run=True):
         pay_record = []
         for a in assignment_data:
             a["paid_bonus"] = 0
@@ -26,17 +26,19 @@ class HITUtils:
                     self.client.approve_assignment(AssignmentId=a["assignment_id"])
                 a["approved"] = True
                 a["paid_base"] = datetime.datetime.now()
-            if a["bonus_amount"] > 0:
-                assert a["bonus_amount"] <= 0.5
-                if not dry_run:
-                    self.client.send_bonus(
-                        WorkerId=a["worker_id"],
-                        AssignmentId=a["assignment_id"],
-                        BonusAmount=str(a["bonus_amount"]),
-                        Reason="Bonus payment as described in survey",
-                    )
+                if a["bonus_amount"] > 0 and not exclude_bonus:
+                    assert (
+                        a["bonus_amount"] <= 0.5
+                    )  # just...make sure we do not pay bonuses over $0.50
+                    if not dry_run:
+                        self.client.send_bonus(
+                            WorkerId=a["worker_id"],
+                            AssignmentId=a["assignment_id"],
+                            BonusAmount=str(a["bonus_amount"]),
+                            Reason="Bonus payment as described in survey",
+                        )
 
-                a["paid_bonus"] = a["bonus_amount"]
+                    a["paid_bonus"] = a["bonus_amount"]
             pay_record.append(a)
         return pay_record
 
@@ -147,6 +149,10 @@ class HITUtils:
             AssignmentStatuses=[filter],
             PaginationConfig={"MaxItems": 5000, "PageSize": 100},
         )
+        # pgs = list(pages)
+        # print("num pages:", len(pgs), pgs)
+        # print("first page:", pgs[0])
+        # print("first assignment:", pgs[0]["Assignments"])
         for page in pages:
             for assignment in page["Assignments"]:
                 assignment["Answer"] = parse_survey_answer(assignment["Answer"])
