@@ -70,7 +70,7 @@ if __name__ == "__main__":
                 print(f"> Getting assignments for HIT {args['HIT_ID']}")
                 assignments = hits.get_assignments_for_HIT(args["HIT_ID"], status)
                 print(f"> Found {len(assignments)} Assignments:")
-                print(pd.DataFrame(assignments))
+                print(pd.DataFrame(assignments).head())
                 if args["-o"]:
                     print(f"> Saving to {args['-o']}...")
                     pd.DataFrame(assignments).to_csv(args["-o"])
@@ -105,7 +105,8 @@ if __name__ == "__main__":
                 print(f"> Found {len(worker_assignments)} Assignments.")
                 assn_df = pd.DataFrame(worker_assignments)
                 print("> Got matched worker assignments and bonus info:")
-                print(assn_df)
+                assn_df.to_csv("matched_assignments.csv")
+                print(assn_df.head())
                 if args["--dry-run"]:
                     pay_record = hits.approve_assignments(
                         worker_assignments,

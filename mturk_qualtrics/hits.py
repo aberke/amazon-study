@@ -22,7 +22,7 @@ class HITUtils:
             a["approved"] = False
             a["paid_base"] = pd.NaT
             if a["met_requirements"]:
-                if not dry_run:
+                if not dry_run and  a["assignment_status"] != "Approved":
                     self.client.approve_assignment(AssignmentId=a["assignment_id"])
                 a["approved"] = True
                 a["paid_base"] = datetime.datetime.now()
@@ -96,6 +96,7 @@ class HITUtils:
             worker_id = assignment["WorkerId"]
             this_assignment_data = {
                 "assignment_id": assignment["AssignmentId"],
+                "assignment_status": assignment["AssignmentStatus"],
                 "worker_id": worker_id,
                 "random_id": randomid_entered_on_hit,
             }
@@ -146,7 +147,7 @@ class HITUtils:
         assn_pager = self.client.get_paginator("list_assignments_for_hit")
         pages = assn_pager.paginate(
             HITId=HIT_id,
-            AssignmentStatuses=[filter],
+            # AssignmentStatuses=[filter],
             PaginationConfig={"MaxItems": 5000, "PageSize": 100},
         )
         # pgs = list(pages)
