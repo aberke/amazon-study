@@ -121,6 +121,7 @@ class HITUtils:
                 assignment_results.append(this_assignment_data)
                 continue
             assert len(assignment_qualtrics_row) == 1
+            print("qualtrics row:", assignment_qualtrics_row.to_markdown())
             assignment_qualtrics_row = assignment_qualtrics_row.iloc[0]
             bonus_amount = get_bonus_amount(assignment_qualtrics_row)
             this_assignment_data["bonus_amount"] = (
@@ -132,9 +133,13 @@ class HITUtils:
             this_assignment_data["found_randomID_in_qualtrics"] = True
             requirement_cols = [c for c in qualtrics_df.columns if "requirements" in c]
             # should sum to 2 if worker met both requirements
-            worker_met_requirements = (
-                assignment_qualtrics_row[requirement_cols].astype(int).sum() == 2
-            )
+            requirement_vals = assignment_qualtrics_row[requirement_cols].dropna()
+            if (len(requirement_vals) > 0):
+                worker_met_requirements = (
+                    assignment_qualtrics_row[requirement_cols].astype(int).sum() == 2
+                )
+            else:
+                worker_met_requirements = True
             this_assignment_data["met_requirements"] = worker_met_requirements
             assignment_results.append(this_assignment_data)
         return assignment_results
