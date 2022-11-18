@@ -208,20 +208,22 @@ function validateCsvData(csvData) {
             message: 'Missing data. Is this the right file?'
         };
     }
+    // Orinally included and then removed when many participants did not have data in 2018.
+    // We decided we wanted to not throw errors for them. Change made week of Nov. 17 2022.
     // Check there is data dating back to 2018.
     const orderDateYears = new Set(csvData.map(rowObj => new Date(rowObj['Order Date']).getFullYear()));
-    if (!orderDateYears.has(2018)) {
-        return {
-            data: csvData,
-            message: 'Missing data from 2018.'
-        };
-    }
+    // if (!orderDateYears.has(2018)) {
+    //     return {
+    //         data: csvData,
+    //         message: 'Missing data from 2018.'
+    //     };
+    // }
     // Check there are multiple years of data.
-    // We ask for 2018 - 2021 data (4 years). Be flexible. Maybe they went a year abroad.
-    if (orderDateYears < 2) {
+    // We ask for 2018 - present data (5 years). Be flexible. Maybe they went a year abroad.
+    if (orderDateYears.size < 2) {
         return {
             data: csvData,
-            message: 'Missing multiple years of data.'
+            message: 'Only one year of data.'
         };
     }
 }
@@ -230,7 +232,7 @@ function displayErrorMessage(errMessage) {
     let displayMessage = "There is a problem with the file: ";
     displayMessage += errMessage;
     displayMessage += "\nPlease try the data download process again and choose the new file.";
-    displayMessage += "\nYou can click back to the previous page to report an issue.";
+    displayMessage += "\nIf you continue to have a problem, you can click back to the previous page to report an issue.";
     errorMessageP.innerHTML = displayMessage;
     errorMessageP.style.display = 'block';
 }
