@@ -133,13 +133,19 @@ function getDataVersion() {
 let dataVersion = getDataVersion();
 console.log('using data version:', dataVersion);
 
+const responseIdCol = 'Survey ResponseID';
+// const currencyCol = 'Currency';
+// Make sure the columns we say we use match the columns we check because some
+// participants modify their own data before sharing. 
+const priceCol = 'Purchase Price Per Unit';
+const quantityCol = 'Quantity';
 
 // Data columns to use:
 // version A: partial data
 let csvColumnsVersionA = [
     'Order Date',
-    'Purchase Price Per Unit',
-    'Quantity',
+    priceCol,
+    quantityCol,
     'Shipping Address State', // Address info unavailable for items shipped to Amazon Lockers
 ];
 // version B: granular data
@@ -150,8 +156,6 @@ let csvColumnsVersionB = csvColumnsVersionA.concat([
 ]);
 let csvColumns = (dataVersion === 'A' ? csvColumnsVersionA : csvColumnsVersionB);
 
-const responseIdCol = 'Survey ResponseID';
-const currencyCol = 'Currency';
 
 // Rename some CSV column names to improve clarity
 const csvColumnNameMap = {
@@ -165,12 +169,19 @@ function filterRow(row) {
     // Returns whether row passes the filter test.
     // filter out non-US orders and returned orders (quantity 0)
     // TODO?: also use 'Shipping Address __' to skip non US orders ?
-    if (row[currencyCol] !== 'USD') {
-        console.log('filtering row with non-US currency:', row[currencyCol])
+    // The initial version of this survey filtered out rows where Currency was not USD.
+    // However, this led to an issue: people were removing columns from the data that
+    // we did not explicitly say we were collecting, such as USD.
+    // if (row[currencyCol] !== 'USD') {
+    //     console.log('filtering row with non-US currency:', row[currencyCol])
+    //     return false;
+    // }
+    if (!row[priceCol] || !row[priceCol].includes('$')) {
+        console.log('Filtering row where price does not include $', row[priceCol]);
         return false;
     }
-    if (row['Quantity'] < 1) {
-        console.log('filtering row with Quantity', row['Quantity'])
+    if (row[quantityCol] < 1) {
+        console.log('filtering row with Quantity', row[quantityCol])
         return false;
     }
     return true;
