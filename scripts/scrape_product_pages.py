@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from multiprocessing import Lock
 from scrapingbee import ScrapingBeeClient
 from tqdm import tqdm
 from tqdm.contrib.concurrent import process_map
@@ -6,15 +7,16 @@ import glob
 import json
 import os
 
-CHUNKSIZE = 100
+CHUNKSIZE = 1000
 # this is the max # of concurrent connections to scrapingbee our subscription allows
-N_WORKERS = 50
 
 # location of unique product ASIN list, separated by newlines:
 product_file = '../output/all_products.txt'
 # we split products into chunks. each file will contain a list of JSON objects
 # with the page text and ASIN for each product in the chunk
 page_file_template = '../output/product_pages/{}.jsonl'
+
+# lock = Lock()
 
 if 'SCRAPINGBEE_API_KEY' not in os.environ:
     print("Please set the environment variable SCRAPINGBEE_API_KEY to your ScrapingBee API key.")
@@ -69,16 +71,45 @@ def scrape_chunk(asin_chunk):
             json.dump(data, f)
             f.write("\n")
 
+def scrape_asin(c):
+    i, asin = c[0], c[1]
+    url = f'https://www.amazon.com/dp/product/{asin}'
+    data = {
+        'page_text': scrape(url),
+        'asin': asin,
+        'chunk': i
+    }
+    return data
+    
+
 
 
 if __name__ == "__main__":
     with open(product_file,'r') as f:
         asins = [asin.strip() for asin in f.readlines()]
+    # determine which chunks to complete
     asin_chunks = [(i, asins[i:i + CHUNKSIZE]) for i in range(0, len(asins), CHUNKSIZE)]
-    completed_chunks = [fname.split('.jsonl')[0] for fname in glob.glob(page_file_template.format('*'))]
-    [asin_chunks.remove(chunk) for chunk in asin_chunks if str(chunk[0]) in completed_chunks]
+    print(f'found {len(asin_chunks)} chunks')
+    completed_chunks = [fname.split('.jsonl')[0].split('/')[-1] for fname in glob.glob(page_file_template.format('*'))]
+    print(f'found {len(completed_chunks)} completed chunks: {completed_chunks}')
+    chunks_to_scrape = [chunk for chunk in asin_chunks if str(chunk[0]) not in completed_chunks]
+    # [asin_chunks.remove(chunk) for chunk in asin_chunks if str(chunk[0]) in completed_chunks]
+    print(f'will scrape {len(chunks_to_scrape)} chunks')
 
     # for chunk in asin_chunks:
         # scrape_chunk(chunk)
-    r = process_map(scrape_chunk, asin_chunks, max_workers=N_WORKERS, chunksize=1)
+    for chunk in chunks_to_scrape:
+        print(f'scraping chunk {chunk[0]}')
+        asins = [(chunk[0], asin) for asin in chunk[1]]
+        chunk_results = process_map(scrape_asin, asins, max_workers=50, chunksize=1)
+        outfile = page_file_template.format(chunk[0])
+        # write just once instead of using locks
+        for data in chunk_results:
+            with open(outfile, 'a') as f:
+                json.dump(data, f)
+                f.write("\n")
+
+        print(f'wrote {len(chunk_results)} results to {page_file_template.format(chunk[0])}')
+
+    # r = process_map(scrape_chunk, asin_chunks, max_workers=N_WORKERS, chunksize=1)
  
