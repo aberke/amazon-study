@@ -5,6 +5,8 @@ from tqdm.contrib.concurrent import process_map
 import json
 import os
 
+CHUNKSIZE = 1000
+
 # location of unique product ASIN list, separated by newlines:
 product_file = '../output/all_products.txt'
 # output file for JSON of scraped product data
@@ -21,7 +23,7 @@ client = ScrapingBeeClient(api_key=os.environ['SCRAPINGBEE_API_KEY'])
 
 def scrape(url):
     # Download the page using scrapingbee
-    print("Downloading %s" % url)
+    # print("Downloading %s" % url)
     # headers=headers, proxies={"http": proxy, "https": proxy})
     r = client.get(url)
     # Simple check to check if page was blocked (Usually 503)
@@ -43,7 +45,7 @@ def scrape_product(asin):
         'asin': asin
     }
     if data['page_text']:
-        print(f'Writing for ASIN {asin} ...')
+        # print(f'Writing for ASIN {asin} ...')
         with lock:
             with open(scraped_file, 'a') as f:
                 json.dump(data,f)
@@ -62,5 +64,5 @@ if __name__ == "__main__":
     with open(product_file,'r') as asinlist:
         asins = [asin.strip() for asin in asinlist.readlines()]
         asins = [asin for asin in asins if asin not in already_scraped]
-    r = process_map(scrape_product, asins, max_workers=5, chunksize=100)
+    r = process_map(scrape_product, asins, max_workers=50, chunksize=1000)
  
