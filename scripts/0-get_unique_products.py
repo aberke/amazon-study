@@ -2,10 +2,11 @@
 import glob
 import pandas as pd
 from tqdm import tqdm 
+import config
 
-files = glob.glob('../output/uploads/*.csv')
+files = glob.glob(config.PURCHASE_GLOB_PATH)
 ASIN_COL = 'ASIN/ISBN (Product Code)'
-product_file = '../output/all_products.txt'
+product_file = config.UNIQUE_PRODUCT_FILE_PATH
 product_set = set()
 
 num_purchases = 0

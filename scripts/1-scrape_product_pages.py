@@ -7,14 +7,16 @@ import glob
 import json
 import os
 
+import config
+
 CHUNKSIZE = 1000
 # this is the max # of concurrent connections to scrapingbee our subscription allows
 
 # location of unique product ASIN list, separated by newlines:
-product_file = '../output/all_products.txt'
+product_file = config.UNIQUE_PRODUCT_FILE_PATH
 # we split products into chunks. each file will contain a list of JSON objects
 # with the page text and ASIN for each product in the chunk
-page_file_template = '../output/product_pages/{}.jsonl'
+page_file_template = config.SCRAPED_PAGE_PATH_TEMPLATE
 
 # lock = Lock()
 
@@ -36,10 +38,21 @@ def clean(html):
     return str(soup)
 
 def scrape(url):
-    r = client.get(url, params = { 
-        'render_js': 'False'
-        }
-    )
+
+    # Loop to request using client.get until an exception is not raised
+    r = None
+    while r is None:
+        try:
+            r = client.get(url, params = { 
+                'render_js': 'False'
+                }
+            )
+            break
+        except Exception as e:
+            print(f'Error scraping {url}: {e}')
+            continue
+
+
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
         if "To discuss automated access to Amazon data please contact" in r.text:
