@@ -1,38 +1,27 @@
 rating:
-    css: '#productTitle'
-    xpath: '//div[contains(concat(" ",normalize-space(@class)," ")," centerColAlign ")]//a[contains(concat(" ",normalize-space(@class)," ")," a-popover-trigger ")]'
+    css: '[data-hook=''rating-out-of-text'']'
+    xpath: null
     type: Text
 title:
     css: '#productTitle'
     xpath: null
     type: Text
-priceWhole:
-    css: 'div.centerColAlign span.a-price-whole'
-    xpath: null
-    type: Text
-priceFraction:
-    css: 'div.centerColAlign span.a-price-fraction'
-    xpath: null
-    type: Text
 about:
-    css: 'div.centerColAlign div.a-section.a-spacing-medium'
+    css: '#feature-bullets'
     xpath: null
     type: Text
-seller:
-    css: null
-    xpath: '//div[contains(concat(" ",normalize-space(@class)," ")," centerColAlign ")]//div[contains(concat(" ",normalize-space(@class)," ")," a-section ")][contains(concat(" ",normalize-space(@class)," ")," a-spacing-none ")]//a[contains(concat(" ",normalize-space(@class)," ")," a-link-normal ")]'
-    type: Text
-description:
-    css: 'p span'
+bylineUrl:
+    css: '[data-csa-c-content-id=''bylineInfo''] a'
+    xpath: null
+    type: Link
+byline:
+    css: '[data-csa-c-content-id=''bylineInfo'']'
     xpath: null
     type: Text
-salesRank:
-    css: 'td > span span:nth-of-type(1)'
+details:
+    css: .detail-bullet-list
     xpath: null
-    type: Text
-firstAvailable:
-    css: 'div.a-section div.a-section tr:nth-of-type(4) td.a-size-base'
-    xpath: null
+    multiple: true
     type: Text
 images:
     css: '.imgTagWrapper img'

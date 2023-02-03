@@ -13,3 +13,11 @@ data/*raw.csv
 
 survey-snippets/.env
 .Rproj.user
+
+output/*
+
+*.pyc
+
+*.csv
+
+*.jsonl
