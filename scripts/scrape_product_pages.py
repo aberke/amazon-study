@@ -1,19 +1,20 @@
 #!/usr/bin/env python3
-from multiprocessing import Lock
 from scrapingbee import ScrapingBeeClient
+from tqdm import tqdm
 from tqdm.contrib.concurrent import process_map
+import glob
 import json
 import os
 
-CHUNKSIZE = 1000
+CHUNKSIZE = 100
+# this is the max # of concurrent connections to scrapingbee our subscription allows
+N_WORKERS = 50
 
 # location of unique product ASIN list, separated by newlines:
 product_file = '../output/all_products.txt'
-# output file for JSON of scraped product data
-scraped_file = '../output/product_pages.jsonl'
-
-# process lock for writing to file
-lock = Lock()
+# we split products into chunks. each file will contain a list of JSON objects
+# with the page text and ASIN for each product in the chunk
+page_file_template = '../output/product_pages/{}.jsonl'
 
 if 'SCRAPINGBEE_API_KEY' not in os.environ:
     print("Please set the environment variable SCRAPINGBEE_API_KEY to your ScrapingBee API key.")
@@ -21,11 +22,22 @@ if 'SCRAPINGBEE_API_KEY' not in os.environ:
 client = ScrapingBeeClient(api_key=os.environ['SCRAPINGBEE_API_KEY'])
 
 
+def clean(html):
+    from bs4 import BeautifulSoup
+    from bs4 import Comment
+    soup = BeautifulSoup(html, "html5lib")    
+    [x.extract() for x in soup.find_all('script')]
+    [x.extract() for x in soup.find_all('style')]
+    [x.extract() for x in soup.find_all('meta')]
+    [x.extract() for x in soup.find_all('noscript')]
+    [x.extract() for x in soup.find_all(text=lambda text:isinstance(text, Comment))]
+    return str(soup)
+
 def scrape(url):
-    # Download the page using scrapingbee
-    # print("Downloading %s" % url)
-    # headers=headers, proxies={"http": proxy, "https": proxy})
-    r = client.get(url)
+    r = client.get(url, params = { 
+        'render_js': 'False'
+        }
+    )
     # Simple check to check if page was blocked (Usually 503)
     if r.status_code > 500:
         if "To discuss automated access to Amazon data please contact" in r.text:
@@ -35,34 +47,38 @@ def scrape(url):
             print("Page %s must have been blocked by Amazon as the status code was %d" % (
                 url, r.status_code))
         return None
-    # Pass the HTML of the page and create
-    return r.text
+    return clean(r.text)
 
-def scrape_product(asin):
-    url = f'https://www.amazon.com/dp/product/{asin}'
-    data = {
-        'page_text': scrape(url),
-        'asin': asin
-    }
-    if data['page_text']:
-        # print(f'Writing for ASIN {asin} ...')
-        with lock:
-            with open(scraped_file, 'a') as f:
-                json.dump(data,f)
-                f.write("\n")
+
+def scrape_chunk(asin_chunk):
+    """writes a chunk of scraped ASIN pages to a file"""
+    i, asins = asin_chunk
+    chunk_data = []
+    for asin in tqdm(asins, desc=f'chunk {i}'):
+        url = f'https://www.amazon.com/dp/product/{asin}'
+        data = {
+            'page_text': scrape(url),
+            'asin': asin,
+            'chunk': i
+        }
+        chunk_data.append(data)
+    outfile = page_file_template.format(i)
+    print(f'writing chunk {i} to {outfile}')
+    with open(outfile, 'a') as f:
+        for data in chunk_data:
+            json.dump(data, f)
+            f.write("\n")
+
+
 
 if __name__ == "__main__":
-    # keep track of already scraped ASINs
-    already_scraped = set()
-    if os.path.exists(scraped_file):
-        with open(scraped_file, 'r') as f:
-            lines = f.readlines()
-        if len(lines) > 0:
-            already_scraped.update([json.loads(l)['asin'] for l in lines])
-    print(f'Ignoring {len(already_scraped)} already scraped ASINs...')
-        
-    with open(product_file,'r') as asinlist:
-        asins = [asin.strip() for asin in asinlist.readlines()]
-        asins = [asin for asin in asins if asin not in already_scraped]
-    r = process_map(scrape_product, asins, max_workers=50, chunksize=1000)
+    with open(product_file,'r') as f:
+        asins = [asin.strip() for asin in f.readlines()]
+    asin_chunks = [(i, asins[i:i + CHUNKSIZE]) for i in range(0, len(asins), CHUNKSIZE)]
+    completed_chunks = [fname.split('.jsonl')[0] for fname in glob.glob(page_file_template.format('*'))]
+    [asin_chunks.remove(chunk) for chunk in asin_chunks if str(chunk[0]) in completed_chunks]
+
+    # for chunk in asin_chunks:
+        # scrape_chunk(chunk)
+    r = process_map(scrape_chunk, asin_chunks, max_workers=N_WORKERS, chunksize=1)
  

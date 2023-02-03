@@ -31,4 +31,10 @@ def extract_product_info(data):
 if __name__ == "__main__":
     with open(scraped_file, 'r') as f:
         lines = f.readlines()
-    r = process_map(extract_product_info, [json.loads(l) for l in lines], max_workers=12, chunksize=10)
+    objs = []
+    for l in lines:
+        try:
+            objs.append(json.loads(l))
+        except Exception as e:
+            continue
+    r = process_map(extract_product_info, objs, max_workers=12, chunksize=10)
