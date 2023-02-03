@@ -61,10 +61,14 @@ dependencies:
     - charset-normalizer==3.0.1
     - click==8.1.3
     - cssselect==1.2.0
+    - html5lib==1.1
     - lxml==4.9.2
     - parsel==1.7.0
     - pyyaml==6.0
     - scrapingbee==1.1.8
     - selectorlib==0.16.0
+    - six==1.16.0
+    - tqdm==4.64.1
     - w3lib==2.1.1
+    - webencodings==0.5.1
 prefix: /home/dcalacci/anaconda3/envs/amazon-study
