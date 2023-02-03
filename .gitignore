@@ -12,3 +12,4 @@ config.json
 data/*raw.csv
 
 survey-snippets/.env
+.Rproj.user
