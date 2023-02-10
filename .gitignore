@@ -2,6 +2,8 @@
 # Standard things
 .ipynb_checkpoints
 
+__pycache__
+
 *.DS_Store
 
 venv*
@@ -10,5 +12,6 @@ venv*
 config.json
 
 data/*raw.csv
+data/amazon-data-phase-1-download/
 
 survey-snippets/.env
