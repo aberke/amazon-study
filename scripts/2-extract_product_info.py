@@ -48,4 +48,4 @@ if __name__ == "__main__":
     chunk_files = glob.glob(config.SCRAPED_PAGE_PATH_TEMPLATE.format('*'))
     print(f"Found chunks {chunk_files}")
     os.makedirs(config.PRODUCT_INFO_PATH_TEMPLATE.format(''), exist_ok=True)
-    process_map(extract_and_write_chunk_product_info, chunk_files, max_workers=8)
+    process_map(extract_and_write_chunk_product_info, chunk_files, max_workers=config.NUM_WORKERS)
