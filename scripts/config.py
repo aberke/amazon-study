@@ -27,6 +27,9 @@ PRODUCT_INFO_PATH_TEMPLATE = '../output/product_info/{}.jsonl'
 # error logs for scraping product info
 PRODUCT_INFO_ERRORS_PATH = '../output/product_info_errors.jsonl'
 
+# full product info file
+PRODUCT_INFO_DATA_FILE_PATH = '../output/product_info_all.jsonl'
+
 # output path for joined purchase and demographic data
 JOINED_DATA_PATH = OUTPUT_DIR / 'joined_purchase_demo.csv'
 
