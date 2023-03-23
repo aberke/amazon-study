@@ -1,0 +1,49 @@
+<!-- use local style for testing -->
+<!-- <link rel="stylesheet" href="./styles.css"> -->
+<link rel="stylesheet" href="https://aberke.github.io/amazon-study/survey-snippets/upload-questions/styles.css">
+
+<div class="Q-upload-container">
+    <div style='display:block;' id="amazon-data-file-container">
+        <p>
+            Click to insert the file from Amazon below.
+        </p>
+        <br/>
+        <p>
+            We will ask for your full consent before saving any data. 
+        </p>
+        <br/>
+        <div id="file-input-container">
+            <input type="file" id="file-input" name="file" accept=".csv">
+        </div>
+    </div>
+    <div id="error-message-container">
+        <p style="display:none;" id="error-message"></p>
+    </div>
+    <!-- shown for specific versions  -->
+    <div class="share-data-language-container">
+        <div id="incentive-language-template">
+            <p>
+                If you consent to share your data we will pay you an additional $0.05 bonus.
+            </p>
+        </div>
+    </div>
+    <div class="share-data-language-container">
+        <!-- shown for all language versions -->
+        <p class="incentive-language-all">
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        </p>
+    </div>
+    <div id="purchases-data-container" class="table-container"></div>
+    <br/>
+    <div class="test-choice-container" style="display: none;">
+        <ul>
+            <li>Consent to share (receive $0.05 bonus)</li>
+            <li>Decline</li>
+        </ul>
+    </div> 
+</div>
+<script src="https://unpkg.com/papaparse@5.3.2/papaparse.min.js"></script>
+<!-- use local file for testing only -->
+<script src="./qualtrics-file-upload.js"></script>
+
