@@ -1,0 +1,31 @@
+column,value
+connect,connect
+PASS_PRESCREEN,PASS_PRESCREEN
+FAILED_ATTN_CHECK,FAILED_ATTN_CHECK
+RecordedDate,Recorded Date
+Q-worker-id,What is your worker ID?
+hitId,hitId
+assignmentId,assignmentId
+Duration (in seconds),Duration (in seconds)
+ResponseId,Response ID
+workerId,workerId
+Q-requirements-1,Do you have an active Amazon account?
+Q-requirements-2,When did you start using your current Amazon account to make purchases?
+Q-attn-check-2,"The following question is very simple. It is an attention check. When asked when you started using Amazon Prime, select after 2020 as the answer.
+
+When did you start using Amazon Prime? Answer based on the description above."
+Q-followup-study,"This is a pre-screen for another study that requires you to sign into your active Amazon account. 
+
+In order to qualify for the main study, please verify that you can sign into your Amazon account and get to the following page:
+
+
+
+https://www.amazon.com/b2b/reports
+ 
+
+Fill in the blank from what you see at the top of that page:
+
+“Your Account > Your Orders > ___”"
+Q-comments,"Thank you for participating.
+
+Comments? (optional)"
