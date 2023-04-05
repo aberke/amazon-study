@@ -1,0 +1,21 @@
+column,value
+PASS_PRESCREEN,PASS_PRESCREEN
+FAILED_ATTN_CHECK,FAILED_ATTN_CHECK
+RecordedDate,Recorded Date
+Q-prolific-ID,What is your Prolific ID
+Q-requirements-1,Do you have an active Amazon account?
+Q-requirements-2,Have you been making purchases on your Amazon account for at least 4 years?
+Q-attn-check-1,"Since you have made purchases on your Amazon account for at least 4 years, you have been making purchases for more than 3 years. When asked the following question, select no. This is an attention check.
+
+Based on these instructions, have you been making purchases on your Amazon account for only 3 years?"
+Q-prolific-mturk,Do you also complete surveys (or HITs) using Amazon mturk?
+Q-mturk-account,Is the Amazon.com account that you use to complete mturk HITs different from the account you use to make purchases on Amazon.com?
+Q-attn-check-2,"The following question is very simple. When asked if you have have Amazon Prime, select no. This is an attention check.
+
+Based on the instructions above, do you have Amazon Prime?"
+Q-comments,"Thank you for participating.
+
+Comments? (optional)"
+Duration (in seconds),Duration (in seconds)
+ResponseId,Response ID
+PROLIFIC_PID,PROLIFIC_PID

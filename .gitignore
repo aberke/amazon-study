@@ -12,6 +12,9 @@ venv*
 config.json
 
 data/*raw.csv
+data/*/raw/*
 data/amazon-data-phase-1*
+
+!*placeholder.txt
 
 survey-snippets/.env
