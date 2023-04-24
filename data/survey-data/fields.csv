@@ -1,0 +1,253 @@
+,fields
+Duration (in seconds),Duration (in seconds)
+RecordedDate,Recorded Date
+ResponseId,Response ID
+Q-prolific,What is your Prolific ID?
+Q-prolific-mturk,Do you also complete surveys (or HITs) using Amazon mturk?
+q-demos-age,What is your age group?
+Q-demos-hispanic,"Are you of Spanish, Hispanic, or Latino origin?"
+Q-demos-race,Choose one or more races that you consider yourself to be
+Q-demos-education,What is the highest level of education you have completed?
+Q-demos-income,What was your total household income before taxes during the past 12 months?
+Q-demos-gender,How do you describe yourself?
+Q-sexual-orientation,Which best describes your sexual orientation?
+Q-demos-state,"50 States, D.C. and Puerto Rico"
+Q-amazon-use-howmany,How many people do you share your Amazon account with? i.e. how many people log in and make orders using your account?
+Q-amazon-use-hh-size,"How many people are in your ""household""?"
+Q-amazon-use-how-oft,How often do you (+ anyone you share your account with) order deliveries from Amazon?
+Q-substance-use_1,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Smoke cigarettes regularly?"
+Q-substance-use_2,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Smoke marijuana regularly?"
+Q-substance-use_3,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Drink alcohol regularly?"
+Q-personal_1,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Have diabetes?"
+Q-personal_2,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Use a wheelchair?"
+Q-life-changes,"In 2021 did you, or someone you share your Amazon account with, experience any of the following life changes?
+
+Please mark all that apply."
+Q-control,"Click to insert the file from Amazon below.
+        
+        
+
+        
+            We will ask for your full consent before saving any data. 
+        
+        
+
+        
+            
+        
+    
+    
+        
+    
+    
+    
+    
+    
+        
+        
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        
+    
+    
+    
+
+    
+        
+            Consent to share
+            Decline"
+Q-altruism,"Click to insert the file from Amazon below.
+        
+        
+
+        
+            We will ask for your full consent before saving any data. 
+        
+        
+
+        
+            
+        
+    
+    
+        
+    
+    
+    
+        
+            
+                Why are we asking you to share?
+            
+            
+                We are crowdsourcing data to democratize access to it as a public good and we are asking for your help.
+            
+            
+                Large amounts of data from people like you are valuable!
+            
+            
+                Amazon and the companies they transact with already use and profit from your data. 
+            
+            
+                Your data can also benefit researchers, organizations, and communities trying to help people via the knowledge your data can provide.
+            
+        
+    
+    
+        
+        
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        
+    
+    
+    
+
+    
+        
+            Consent to share
+            Decline"
+Q-bonus-05,"Click to insert the file from Amazon below.
+        
+        
+
+        
+            We will ask for your full consent before saving any data. 
+        
+        
+
+        
+            
+        
+    
+    
+        
+    
+    
+    
+        
+            
+                If you consent to share your data we will pay you an additional $0.05 bonus.
+            
+        
+    
+    
+        
+        
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        
+    
+    
+    
+
+    
+        
+            Consent to share (receive $0.05 bonus)
+            Decline"
+Q-bonus-20,"Click to insert the file from Amazon below.
+        
+        
+
+        
+            We will ask for your full consent before saving any data. 
+        
+        
+
+        
+            
+        
+    
+    
+        
+    
+    
+    
+        
+            
+                If you consent to share your data we will pay you an additional $0.20 bonus.
+            
+        
+    
+    
+        
+        
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        
+    
+    
+    
+
+    
+        
+            Consent to share (receive $0.20 bonus)
+            Decline"
+Q-bonus-50,"Click to insert the file from Amazon below.
+        
+        
+
+        
+            We will ask for your full consent before saving any data. 
+        
+        
+
+        
+            
+        
+    
+    
+        
+    
+    
+    
+        
+            
+                If you consent to share your data we will pay you an additional $0.50 bonus.
+            
+        
+    
+    
+        
+        
+            Below is the data we would like to collect and save. No other information from your Amazon account will be collected. Any saved data may be publicly shared.
+            A random survey responseID would be connected to your data. It is not connected to your Amazon account.             
+        
+    
+    
+    
+
+    
+        
+            Consent to share (receive $0.50 bonus)
+            Decline"
+Q-data-value-05,"Would you hypothetically consent to share your data for a bonus payment of $0.05?
+(Since you already declined to share your data, your Amazon data will not be collected if you say Yes.)"
+Q-data-value-20,"Would you hypothetically consent to share your data for a bonus payment of $0.20?
+(Since you already declined to share your data, your Amazon data will not be collected if you say Yes.)"
+Q-data-value-50,"Would you hypothetically consent to share your data for a bonus payment of $0.50?
+(Since you already declined to share your data, your Amazon data will not be collected if you say Yes.)"
+Q-data-value-100,"Would you hypothetically consent to share your data for a bonus payment of $1.00? (Since you already declined to share your data, your Amazon data will not be collected if you say Yes.)"
+Q-data-value-any,How much would you share your data for? - Selected Choice
+Q-data-value-any_1_TEXT,How much would you share your data for? - More than $1.00 (enter amount) - Text
+Q-sell-YOUR-data,Do you think Amazon should be able to sell YOUR purchase data to other companies?
+Q-sell-consumer-data,Do you think companies should be able to sell consumer purchase data to other companies?
+Q-small-biz-use,Big companies currently collect and sell consumer purchase data. Do you think that small businesses should be able to access this data for free in order to help them compete with the big companies?
+Q-census-use,Do you think the U.S. Census Bureau should use purchase data to supplement their existing surveys?
+Q-research-society,Do you think researchers should be able to use purchase data to understand societal changes (e.g. due to COVID-19)?
+Q-attn-check,This is an attention check. Help us find people who are not paying attention. Select all answers to this question.
+Q-comments,Comments? (optional)
+ResponseID,ResponseID
+showdata,showdata
+incentive,incentive
+Q-workerId,What is your Worker ID?
+connect,connect
