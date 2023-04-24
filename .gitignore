@@ -13,7 +13,6 @@ config.json
 
 data/*raw.csv
 data/*/raw/*
-data/amazon-data-phase-1*
 data/amazon-data/*
 
 data/survey-data/unprocessed/*
