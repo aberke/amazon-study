@@ -94,6 +94,23 @@ Data we downloaded and then use are [here](https://docs.google.com/spreadsheets/
 
 ## Race
 
+We use table NC-EST2021-SR11H.
+
+Note race data slightly differs across sources offered by the census.
+
+Suggested Citation:			
+> Annual Estimates of the Resident Population by Sex, Race, and Hispanic Origin for the United States: April 1, 2020 to July 1, 2021 (NC-EST2021-SR11H)			
+
+Source: U.S. Census Bureau, Population Division			
+Release Date: June 2022	
+
+Downloaded from:
+https://www.census.gov/data/tables/time-series/demo/popest/2020s-national-detail.html
+
+Data available [here](https://docs.google.com/spreadsheets/d/1i3OAjXzCX8CnRfybB_WEuRIFKKMtEsMrFt2A_T0qFwY/edit#gid=1363938624).
+
+---
+
 From US census quick facts: 
 https://www.census.gov/quickfacts/fact/table/US/RHI125221
 
