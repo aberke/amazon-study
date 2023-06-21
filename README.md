@@ -9,21 +9,10 @@ https://docs.google.com/document/d/1juwHjItfMks2V_40uQpU6fKXi8nNkym51Gc6AB6LAiE/
 
 ## Qualtrics survey
 
+Public preview of the main Qualtrics survey:
+
+https://mit.co1.qualtrics.com/jfe/preview/previewId/8ccb7aa7-0546-4a15-af4c-766a06aaf57d/SV_cMiItXdF95DdF5A?Q_CHL=preview&Q_SurveyVersionID=current
+
+We wrote custom code inserted into the Qualtrics survey to make this complient with our privacy goals and 2x5 experiment design.
+
 See survey snippets with documentation for set up in /survey-snippets/
-
-
-## Chrome extension development
-
-Code in /chrome-extension/
-
-to install the extension on your local machine
-
-- Navigate to chrome://extensions in your browser.
-- Check the box next to Developer Mode.
-- Click Load Unpacked Extension and select the directory for our extension.
-
-## Web page about the project
-
-https://aberke.github.io/amazon-study/
-
-Modify via index.md
