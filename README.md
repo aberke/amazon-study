@@ -13,6 +13,6 @@ Public preview of the main Qualtrics survey:
 
 https://mit.co1.qualtrics.com/jfe/preview/previewId/8ccb7aa7-0546-4a15-af4c-766a06aaf57d/SV_cMiItXdF95DdF5A?Q_CHL=preview&Q_SurveyVersionID=current
 
-We wrote custom code inserted into the Qualtrics survey to make this complient with our privacy goals and 2x5 experiment design.
+We wrote custom code inserted into the Qualtrics survey to make this compliant with our privacy goals and 2x5 experiment design.
 
 See survey snippets with documentation for set up in /survey-snippets/
