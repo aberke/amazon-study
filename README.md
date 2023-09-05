@@ -3,16 +3,9 @@
 MIT IRB protocol # 2205000649
 
 
-Our documentation:
+We crowdsourced years of Amazon purchases data from thousands of US consumers using a privacy-preserving and consent driven framework. 
+To better inform and support future crowdsourcing efforts, we embedded an experiment in the data collection tool, enabling us to study how different incentives and transparency treatments, as well as demographics, impact people's likelihood to share their data.
 
-https://docs.google.com/document/d/1juwHjItfMks2V_40uQpU6fKXi8nNkym51Gc6AB6LAiE/
 
-## Qualtrics survey
+See `/instrument` for details about our data collection process.
 
-Public preview of the main Qualtrics survey:
-
-https://mit.co1.qualtrics.com/jfe/preview/previewId/8ccb7aa7-0546-4a15-af4c-766a06aaf57d/SV_cMiItXdF95DdF5A?Q_CHL=preview&Q_SurveyVersionID=current
-
-We wrote custom code inserted into the Qualtrics survey to make this compliant with our privacy goals and 2x5 experiment design.
-
-See survey snippets with documentation for set up in /survey-snippets/
