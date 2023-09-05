@@ -1,4 +1,33 @@
-# Survey Snippets
+# Data collection instrument
+
+We wrote custom code inserted into the Qualtrics survey to make this tool comply with our privacy goals and 2x5 experiment design.
+
+See `survey-instrument.pdf` for a non-interactive copy of the survey questions.
+
+
+## Prescreen survey
+
+There was a prescreen survey. Participants who "passed" the prescreen were invited to participate in the main survey.
+
+Participants "passed" the prescreen if they:
+
+- Have had an Amazon account since 2018 or earlier
+- Passed the attention check(s)
+- Verify they can log into their Amazon account during the study 
+- (Later version) Indicate they want to participate in the main survey after being told it asks them to log into their account.
+
+See `/prescreen` for details and the survey instrument.
+
+
+## Qualtrics survey
+
+Public preview of the main Qualtrics survey:
+
+https://mit.co1.qualtrics.com/jfe/preview/previewId/8ccb7aa7-0546-4a15-af4c-766a06aaf57d/SV_cMiItXdF95DdF5A?Q_CHL=preview&Q_SurveyVersionID=current
+
+
+
+## Custom survey code
 
 Overview:
 
