@@ -1,0 +1,36 @@
+,fields
+Survey ResponseID,Response ID
+Q-demos-age,What is your age group?
+Q-demos-hispanic,"Are you of Spanish, Hispanic, or Latino origin?"
+Q-demos-race,Choose one or more races that you consider yourself to be
+Q-demos-education,What is the highest level of education you have completed?
+Q-demos-income,What was your total household income before taxes during the past 12 months?
+Q-demos-gender,How do you describe yourself?
+Q-sexual-orientation,Which best describes your sexual orientation?
+Q-demos-state,"50 States, D.C. and Puerto Rico"
+Q-amazon-use-howmany,How many people do you share your Amazon account with? i.e. how many people log in and make orders using your account?
+Q-amazon-use-hh-size,"How many people are in your ""household""?"
+Q-amazon-use-how-oft,How often do you (+ anyone you share your account with) order deliveries from Amazon?
+Q-substance-use-cigarettes,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Smoke cigarettes regularly?"
+Q-substance-use-marijuana,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Smoke marijuana regularly?"
+Q-substance-use-alcohol,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Drink alcohol regularly?"
+Q-personal-diabetes,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Have diabetes?"
+Q-personal-wheelchair,"Are any of the following the case for:
+
+You or someone in your household or someone you share your Amazon account with? - Use a wheelchair?"
+Q-life-changes,"In 2021 did you, or someone you share your Amazon account with, experience any of the following life changes?
+
+Please mark all that apply."
+Q-sell-YOUR-data,Do you think Amazon should be able to sell YOUR purchase data to other companies?
+Q-sell-consumer-data,Do you think companies should be able to sell consumer purchase data to other companies?
+Q-small-biz-use,Big companies currently collect and sell consumer purchase data. Do you think that small businesses should be able to access this data for free in order to help them compete with the big companies?
+Q-census-use,Do you think the U.S. Census Bureau should use purchase data to supplement their existing surveys?
+Q-research-society,Do you think researchers should be able to use purchase data to understand societal changes (e.g. due to COVID-19)?
