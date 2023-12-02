@@ -24,3 +24,8 @@ An unpublished draft is at [/data-collection-survey-experiment.pdf](/data-collec
 ---
 See `/instrument` for details about our data collection process.
 
+---
+
+The Amazon purchases histories and associated survey responses can be accessed via Harvard Dataverse. Please use and cite appropriately.
+
+> Alex Berke; Dan Calacci; Robert Mahari; Takahiro Yabe; Kent Larson; Sandy Pentland, 2023, "Open e-commerce 1.0: Five years of crowdsourced U.S. Amazon purchase histories with user demographics", https://doi.org/10.7910/DVN/YGLYDY, Harvard Dataverse.
