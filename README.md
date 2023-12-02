@@ -19,7 +19,7 @@ We crowdsourced 4-5 years of Amazon purchase histories from more than 5000 US co
 
 ### Study to support further crowdsourcing efforts
 We built an experiment into our survey tool in order to study what impacts consumers' likelihood to share their data with researchers, in order to support future data crowdsourcing  efforts. Survey participants were randomly assigned to experimental arms, and were presented with different interfaces and incentives when asked to share their data. We found that showing users their data significantly increases sharing. We also studied the incremental impact of monetary rewards, finding a linear relationship between reward amount and likelihood to share. In addition, we uncovered how the likelihood to share differs across demographic groups. Our article describing the survey tool, experiment and results is currently pending review at the Computer-Supported Cooperative Work and Social Computing Conference. 
-An unpublished draft is [here](https://drive.google.com/file/d/1IxJXrmh78Pk1HRcqm_nt05pKAuwpR57p/view). We believe that crowdsourcing presents a valuable approach to developing open datasets and results from our experiment can inform and improve future crowdsourcing efforts.
+An unpublished draft is at [/data-collection-survey-experiment.pdf](/data-collection-survey-experiment.pdf). We believe that crowdsourcing presents a valuable approach to developing open datasets and results from our experiment can inform and improve future crowdsourcing efforts.
 
 ---
 See `/instrument` for details about our data collection process.
