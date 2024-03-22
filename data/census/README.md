@@ -94,12 +94,13 @@ Data we downloaded and then use are [here](https://docs.google.com/spreadsheets/
 
 ## Race
 
-We use table NC-EST2021-SR11H.
-
 Note race data slightly differs across sources offered by the census.
 
-Suggested Citation:			
-> Annual Estimates of the Resident Population by Sex, Race, and Hispanic Origin for the United States: April 1, 2020 to July 1, 2021 (NC-EST2021-SR11H)			
+We use the 2020 decennial census data:
+> U.S. Census Bureau. (2020). RACE. Decennial Census, DEC 118th Congressional District Summary File, Table P8. Retrieved March 21, 2024, from https://data.census.gov/table/DECENNIALCD1182020.P8.
+
+And use table NC-EST2021-SR11H.
+> Annual Estimates of the Resident Population by Sex, Race, and Hispanic Origin for the United States: April 1, 2020 to July 1, 2021 (NC-EST2021-SR11H)	
 
 Source: U.S. Census Bureau, Population Division			
 Release Date: June 2022	
