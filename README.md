@@ -39,7 +39,7 @@ We published this dataset in an effort towards democratizing access to rich data
 The data collection process, experiment, and results are described in [our CSCW paper](https://arxiv.org/pdf/2404.13172) (Computer-Supported Cooperative Work and Social Computing Conference).
 
 See:
-> Berke, A., Mahari, R., Pentland, S., Larson, K., & Calacci, D. (2024). Insights from an experiment crowdsourcing data from thousands of US Amazon users: The importance of transparency, money, and data use. CSCW 2024. https://arxiv.org/pdf/2404.13172 
+> Alex Berke, Robert Mahari, Sandy Pentland, Kent Larson, and Dana Calacci. 2024. Insights from an experiment crowdsourcing data from thousands of US Amazon users: The importance of transparency, money, and data use. Proc. ACM Hum.-Comput. Interact. 8, CSCW2, Article 466 (November 2024), 48 pages. https://doi.org/10.1145/3687005
 
 ### Data collection instrument
 
