@@ -23,3 +23,12 @@ data/survey-data/comments.csv
 !*placeholder.txt
 
 survey-snippets/.env
+.Rproj.user
+
+output/*
+
+*.pyc
+
+*.csv
+
+*.jsonl
