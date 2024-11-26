@@ -59,8 +59,9 @@ We also studied the incremental impact of monetary rewards, finding a linear rel
 
 
 ### FTC comment
-We coauthored an open letter to the FTC in advance of their commercial surveillance rulemaking.  
-Our letter is available here: https://www.regulations.gov/comment/FTC-2022-0053-1201.
+We coauthored an open letter to the FTC in advance of their commercial surveillance rulemaking (https://www.regulations.gov/comment/FTC-2022-0053-1201). 
+
+> Berke, A., Calacci, D., & Mahari, R. (2022). Comment to Federal Trade Commission on Commercial Surveillance. https://hdl.handle.net/1721.1/157133
 
 Our letter discusses how corporate data collection practices have led to power asymmetries and resulting consumer harms, and how researcher access to consumer data can help expose potential harms to help empower future policy making. Our letter argues the FTC should empower consumers to share data, with their informed consent, with researchers and consumer advocacy organizations, and prohibit corporate practices designed to prevent this. Such a change is a first step towards making more open datasets like the one we crowdsourced possible.
 
