@@ -1,0 +1,38 @@
+rating:
+    css: '[data-hook=''rating-out-of-text'']'
+    xpath: null
+    type: Text
+title:
+    css: '#productTitle'
+    xpath: null
+    type: Text
+about:
+    css: '#feature-bullets'
+    xpath: null
+    type: Text
+bylineUrl:
+    css: '[data-csa-c-content-id=''bylineInfo''] a'
+    xpath: null
+    type: Link
+byline:
+    css: '[data-csa-c-content-id=''bylineInfo'']'
+    xpath: null
+    type: Text
+details:
+    css: .detail-bullet-list
+    xpath: null
+    multiple: true
+    type: Text
+images:
+    css: '.imgTagWrapper img'
+    xpath: null
+    type: Attribute
+    attribute: data-a-dynamic-image
+technical:
+    css: 'div.a-expander-content div.a-expander-content'
+    xpath: null
+    type: Text
+categoryTree:
+    css: 'div.a-subheader ul.a-unordered-list'
+    xpath: null
+    type: Text
