@@ -1,0 +1,7 @@
+name: amazon-study
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - grayskull
+prefix: /home/dcalacci/anaconda3/envs/amazon-study
